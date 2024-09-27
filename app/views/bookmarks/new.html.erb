@@ -5,10 +5,7 @@
         <h3>Add a movie to your <%= @list.name %> list</h3>
         <%= simple_form_for [@list, @bookmark] do |f| %>
           <%= f.input :comment, placeholder: "Enter a comment about the movie" %>
-          <div class="form-group">
-            <%= f.label :movie_id, "Select a movie" %>
-            <%= f.select :movie_id, options_from_collection_for_select(@movies, :id, :title), {}, { class: "form-control", data: { controller: "tom-select" } } %>
-          </div>
+          <%= f.association :movie, collection: @movies, prompt: "Select a movie", input_html: {data: {controller: "tom-select"}} %>
           <%= f.submit class: "btn btn-flat" %>
         <% end %>
       </div>
